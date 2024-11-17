@@ -1,0 +1,95 @@
+.hero {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  background-image: url('/images/hero-cake.jpg'); /* We'll need this image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif; /* We can use a different font */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-family: 'Lato', sans-serif; /* We can use a different font */
+}
+
+.hero-cta {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background-color: #FF69B4;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  background-color: #FF1493;
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .hero-cta {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+  }
+}
+
+@keyframes shine {
+  0% {
+    background-position: right center;
+  }
+  100% {
+    background-position: left center;
+  }
+}
+
+.animate-shine {
+  animation: shine 8s ease infinite;
+}
+
+/* Add any other custom styles here */ 

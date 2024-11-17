@@ -1,0 +1,148 @@
+.cake-controls-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.control-section {
+  background: white;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 
+    2px 2px 0 var(--cyber-purple),
+    -2px -2px 0 var(--baby-blue);
+}
+
+.y2k-subtitle {
+  font-family: 'Bubblegum Sans', cursive;
+  color: var(--primary-pink);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px var(--cyber-purple);
+}
+
+/* Layer Options */
+.layer-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.layer-option {
+  background: var(--candy-gradient);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  cursor: move;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.layer-option:hover {
+  transform: scale(1.05);
+}
+
+.layer-option.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+/* Frosting Options */
+.frosting-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.frosting-btn {
+  background: white;
+  border: 2px solid var(--primary-pink);
+  padding: 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.frosting-btn:hover {
+  background: var(--lavender);
+}
+
+.frosting-btn.active {
+  background: var(--candy-gradient);
+  color: white;
+  border: none;
+}
+
+/* Topping Options */
+.topping-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.topping-option {
+  background: var(--holographic-gradient);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  cursor: move;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  font-size: 0.9rem;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.topping-option:hover {
+  transform: scale(1.05);
+}
+
+.topping-option.dragging {
+  opacity: 0.5;
+  transform: scale(0.95);
+}
+
+/* Preview Section */
+.preview-section {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+}
+
+.preview-title {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--primary-pink);
+}
+
+.preview-list {
+  list-style: none;
+  padding: 0;
+}
+
+.preview-item {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--lavender);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .layer-options,
+  .topping-options {
+    grid-template-columns: 1fr;
+  }
+}

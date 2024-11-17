@@ -1,0 +1,34 @@
+.cake-canvas-container {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  position: relative;
+}
+
+.rotate-button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: var(--candy-gradient);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  color: white;
+  font-family: 'Bubblegum Sans', cursive;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    3px 3px 0 var(--cyber-purple),
+    -3px -3px 0 var(--baby-blue);
+}
+
+.rotate-button:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+.rotate-button:active {
+  transform: translateX(-50%) scale(0.95);
+}
+ 

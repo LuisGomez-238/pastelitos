@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base cake layer -->
+  <path d="M4 16C4 14 6 12 16 12C26 12 28 14 28 16V26C28 28 26 30 16 30C6 30 4 28 4 26V16Z" fill="#FF66B2"/>
+  
+  <!-- Top decoration -->
+  <path d="M8 12C8 8 11 6 16 6C21 6 24 8 24 12" stroke="#C8A2C8" stroke-width="2"/>
+  
+  <!-- Cherry on top -->
+  <circle cx="16" cy="5" r="3" fill="#FF0066"/>
+  
+  <!-- Sparkles -->
+  <circle cx="6" cy="14" r="1" fill="white"/>
+  <circle cx="26" cy="14" r="1" fill="white"/>
+  <circle cx="16" cy="16" r="1" fill="white"/>
+</svg> 

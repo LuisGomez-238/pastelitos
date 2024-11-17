@@ -1,0 +1,16 @@
+:root {
+    /* Y2K-inspired color palette */
+    --primary-pink: #FF66B2;
+    --secondary-pink: #FFB6C1;
+    --accent-purple: #C8A2C8;
+    --accent-blue: #87CEEB;
+    --accent-yellow: #FFFACD;
+    
+    /* UI Colors */
+    --background: #FFF2F9;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+    
+    /* Gradients */
+    --y2k-gradient: linear-gradient(45deg, var(--primary-pink), var(--accent-purple), var(--accent-blue));
+  }

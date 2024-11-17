@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Varela+Round&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFE5F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FF6B9E;
+  border-radius: 100px;
+  border: 3px solid #FFE5F7;
+}
+
+/* Y2K Styles */
+@layer components {
+  .y2k-card {
+    @apply bg-white/90 backdrop-blur-sm border-2 border-y2k-pink rounded-2xl 
+    shadow-y2k hover:shadow-kawaii transition-shadow;
+  }
+  
+  .y2k-button {
+    @apply px-6 py-3 bg-y2k-pink text-white rounded-full border-2 border-white 
+    shadow-y2k hover:bg-y2k-babypink transition-colors font-bubblegum tracking-wide 
+    hover:-translate-y-1 hover:shadow-kawaii transform transition-all;
+  }
+  
+  .sparkle-text {
+    @apply font-bubblegum bg-clip-text text-transparent bg-glitter-gradient 
+    animate-sparkle;
+  }
+}
+
+/* Glitter Animation */
+.glitter {
+  background: linear-gradient(120deg, #FF6B9E, #FFA6C9, #FFE5F7, #FF6B9E);
+  background-size: 200% 200%;
+  animation: glitter 3s linear infinite;
+}
+
+@keyframes glitter {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+} 

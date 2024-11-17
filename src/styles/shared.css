@@ -1,0 +1,112 @@
+/* Y2K-inspired fonts - we'll need to import these */
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
+
+:root {
+  /* Expanding our Y2K color palette */
+  --primary-pink: #FF66B2;
+  --secondary-pink: #FFB6C1;
+  --baby-blue: #87CEEB;
+  --lavender: #E6E6FA;
+  --cyber-purple: #C8A2C8;
+  --sunny-yellow: #FFFACD;
+  --mint-green: #98FF98;
+  
+  /* Common gradients */
+  --candy-gradient: linear-gradient(45deg, var(--primary-pink) 0%, var(--baby-blue) 100%);
+  --holographic-gradient: linear-gradient(
+    135deg,
+    var(--lavender) 0%,
+    var(--baby-blue) 25%,
+    var(--primary-pink) 50%,
+    var(--cyber-purple) 75%,
+    var(--mint-green) 100%
+  );
+
+  /* Breakpoints */
+  --mobile: 480px;
+  --tablet: 768px;
+  --laptop: 1024px;
+  --desktop: 1200px;
+
+  /* Transition speeds */
+  --transition-slow: 0.5s ease;
+  --transition-medium: 0.3s ease;
+  --transition-fast: 0.2s ease;
+}
+
+/* Global transition class */
+.smooth-transition {
+  transition: all var(--transition-medium);
+}
+
+/* Layout transition wrapper */
+.layout-transition {
+  transition: 
+    width var(--transition-medium),
+    height var(--transition-medium),
+    margin var(--transition-medium),
+    padding var(--transition-medium),
+    transform var(--transition-medium),
+    grid-template-columns var(--transition-medium);
+}
+
+/* Common Y2K elements */
+.y2k-container {
+  background-color: white;
+  border: 3px solid var(--primary-pink);
+  border-radius: 20px;
+  box-shadow: 
+    4px 4px 0 var(--cyber-purple),
+    -4px -4px 0 var(--baby-blue);
+  padding: 20px;
+  margin: 20px;
+}
+
+.y2k-title {
+  font-family: 'Bubblegum Sans', cursive;
+  color: var(--primary-pink);
+  text-shadow: 
+    2px 2px 0 var(--cyber-purple),
+    -2px -2px 0 var(--baby-blue);
+  text-align: center;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+}
+
+.y2k-button {
+  background: var(--candy-gradient);
+  border: none;
+  border-radius: 25px;
+  padding: 12px 24px;
+  color: white;
+  font-family: 'Bubblegum Sans', cursive;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    3px 3px 0 var(--cyber-purple),
+    -3px -3px 0 var(--baby-blue);
+}
+
+.y2k-button:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* Responsive container */
+.container {
+  width: 100%;
+  max-width: var(--desktop);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  .y2k-title {
+    font-size: 2rem;
+  }
+
+  .y2k-subtitle {
+    font-size: 1.2rem;
+  }
+}
