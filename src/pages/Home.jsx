@@ -4,7 +4,20 @@ import { Heart, Star, Sparkles, Cherry, Instagram } from 'lucide-react';
 
 function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 relative">
+      {/* Floating Instagram Button */}
+      <a 
+        href="https://www.instagram.com/pastelitos_559/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center gap-2 y2k-button 
+          bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 
+          hover:to-pink-600 shadow-lg hover:-translate-y-1 transition-transform"
+      >
+        <Instagram className="w-5 h-5" />
+        <span className="hidden sm:inline">Follow Us</span>
+      </a>
+
       <div className="container mx-auto px-4 py-20">
         <div className="text-center">
           <img 
@@ -136,9 +149,18 @@ function Home() {
             <h2 className="font-bubblegum text-5xl text-y2k-pink mb-4">
               ✨ Sweet Gallery ✨
             </h2>
-            <p className="font-kawaii text-gray-600">
+            <p className="font-kawaii text-gray-600 mb-4">
               Follow us on Instagram for daily doses of sweetness! 📸
             </p>
+            <a 
+              href="https://www.instagram.com/pastelitos_559/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="inline-flex items-center gap-2 y2k-button bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600"
+            >
+              <Instagram className="w-5 h-5" />
+              @pastelitos_559
+            </a>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -208,7 +230,7 @@ const features = [
 const instagramPosts = [
   {
     image: "/images/insta-1.jpg",
-    link: "#"
+    link: "https://www.instagram.com/pastelitos_559/"
   },
   // Add more posts...
 ];

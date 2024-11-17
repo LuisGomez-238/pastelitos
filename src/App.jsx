@@ -11,6 +11,7 @@ const CakeBuilder = lazy(() => import('./pages/CakeBuilder'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const Gallery = lazy(() => import('./pages/Gallery'));
 
 // Animated page wrapper
 function PageWrapper({ children }) {
@@ -55,6 +56,11 @@ function AnimatedRoutes() {
         <Route path="/contact" element={
           <PageWrapper>
             <Contact />
+          </PageWrapper>
+        } />
+        <Route path="/gallery" element={
+          <PageWrapper>
+            <Gallery />
           </PageWrapper>
         } />
         <Route path="*" element={
