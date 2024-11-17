@@ -11,12 +11,14 @@ function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-12 h-12 bg-y2k-pink rounded-full flex items-center justify-center 
-              border-2 border-white shadow-kawaii animate-spin-slow">
-              <Heart className="w-6 h-6 text-white" />
-            </div>
+            
+              <img 
+            src="/pastelitosLogo.svg" 
+            alt="Pastelitos Logo" 
+            className="w-20 h-20 mx-auto mb-6 mt-6"
+          />
             <span className="font-bubblegum text-2xl text-y2k-pink">
-              Pastelitos ✨
+              Welcome to our shop!
             </span>
           </Link>
 

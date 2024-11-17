@@ -23,11 +23,11 @@ export default function Hero() {
         <div className="text-center">
           <h1 className="font-bubblegum text-6xl sm:text-7xl text-white mb-6 
             drop-shadow-[0_2px_2px_rgba(255,107,158,0.5)]">
-            ✨ Sweet Dreams Bakery ✨
+            ✨ Pastelitos <3 ✨
           </h1>
           
           <p className="font-kawaii text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
-            Making your kawaii cake dreams come true! 🎂
+            We make cakes! 🎂
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
