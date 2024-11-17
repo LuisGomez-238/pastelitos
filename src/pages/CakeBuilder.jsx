@@ -67,7 +67,9 @@ function CakeBuilder() {
 
   const SizeSelector = () => (
     <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 border-2 border-pink-300 shadow-lg">
-      <h2 className="font-bold text-2xl text-pink-500 mb-4">Choose Your Size</h2>
+      <h2 className="font-seasons text-3xl text-y2k-pink mb-4">
+        Choose Your Size 🎂
+      </h2>
       <div className="grid grid-cols-3 gap-4">
         {sizes.map(size => (
           <button
@@ -91,7 +93,12 @@ function CakeBuilder() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="font-seasons text-5xl text-y2k-pink text-center mb-8">
+          ✨ Design Your Dream Cake ✨
+        </h1>
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Options Section */}
           <div className="space-y-6">
             {/* Size Selection */}
             <SizeSelector />
@@ -99,7 +106,7 @@ function CakeBuilder() {
             {/* Layer Selection - Moved right after size */}
             {cakeChoices.size && (
               <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-6 border-2 border-pink-300 shadow-lg">
-                <h2 className="font-bold text-2xl text-pink-500 mb-4 flex items-center gap-2">
+                <h2 className="font-seasons text-3xl text-y2k-pink mb-4 flex items-center gap-2">
                   <Cake className="w-6 h-6" />
                   Choose Your Layers
                 </h2>

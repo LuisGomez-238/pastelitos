@@ -17,7 +17,7 @@ function Navbar() {
             alt="Pastelitos Logo" 
             className="w-20 h-20 mx-auto mb-6 mt-6"
           />
-            <span className="font-bubblegum text-2xl text-y2k-pink">
+            <span className="font-seasons text-2xl text-y2k-pink">
               Welcome to our shop!
             </span>
           </Link>
@@ -33,7 +33,7 @@ function Navbar() {
               <Link
                 key={item.path}
                 to={item.path}
-                className="group flex items-center space-x-2 font-kawaii text-y2k-pink 
+                className="group flex items-center space-x-2 font-seasons text-y2k-pink 
                   hover:text-y2k-babypink transition-colors"
               >
                 <item.icon className="w-5 h-5 group-hover:animate-bounce-slow" />
@@ -73,7 +73,7 @@ function Navbar() {
               <Link
                 key={item.path}
                 to={item.path}
-                className="flex items-center space-x-2 font-kawaii text-y2k-pink 
+                className="flex items-center space-x-2 font-seasons text-y2k-pink 
                   hover:text-y2k-babypink transition-colors p-3 rounded-full 
                   hover:bg-y2k-pink/10"
                 onClick={() => setIsOpen(false)}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Instagram } from 'lucide-react';
 import axios from 'axios';
+import { INSTAGRAM_CONFIG } from '../config/instagram';
 
 function Gallery() {
   const [posts, setPosts] = useState([]);
@@ -11,7 +12,7 @@ function Gallery() {
     const fetchInstagramFeed = async () => {
       try {
         const response = await axios.get(
-          `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${INSTAGRAM_CONFIG.accessToken}`
+          `https://graph.instagram.com/v12.0/${INSTAGRAM_CONFIG.userId}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${INSTAGRAM_CONFIG.accessToken}&limit=12`
         );
         setPosts(response.data.data);
       } catch (err) {
@@ -55,17 +56,17 @@ function Gallery() {
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="font-bubblegum text-5xl text-y2k-pink mb-4">
+          <h1 className="font-seasons text-5xl text-y2k-pink mb-4">
             ✨ Sweet Gallery ✨
           </h1>
-          <p className="font-kawaii text-gray-600 mb-4">
+          <p className="font-seasons text-gray-600 mb-4">
             Follow us on Instagram for daily doses of sweetness! 📸
           </p>
           <a 
             href="https://www.instagram.com/pastelitos_559/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 y2k-button bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600"
+            className="inline-flex items-center gap-2 y2k-button bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 font-seasons"
           >
             <Instagram className="w-5 h-5" />
             @pastelitos_559

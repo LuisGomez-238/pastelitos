@@ -1,4 +1,4 @@
 export const INSTAGRAM_CONFIG = {
-  accessToken: 'YOUR_INSTAGRAM_ACCESS_TOKEN',
-  count: 12  // number of posts to display
+  accessToken: import.meta.env.VITE_INSTAGRAM_ACCESS_TOKEN,
+  userId: import.meta.env.VITE_INSTAGRAM_USER_ID,
 }; 
