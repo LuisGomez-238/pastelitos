@@ -100,7 +100,28 @@
 /* Responsive design */
 @media (max-width: 768px) {
   .cake-builder-container {
+    display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .preview-section {
+    order: -1;
+    position: sticky;
+    top: 5rem;
+    z-index: 10;
+    background: var(--glitter-gradient);
+    padding: 1rem;
+    margin: -1rem -1rem 1rem -1rem;
+  }
+
+  .cake-preview {
+    height: 250px;
+    min-height: 250px;
+    max-height: 250px;
+  }
+
+  .controls-section {
+    padding-bottom: 2rem;
   }
 }
 

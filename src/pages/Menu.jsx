@@ -1,125 +1,145 @@
 import React, { useState } from 'react';
-import { Heart, Star, Sparkles, Cherry } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ChevronDown, ChevronUp, Cake, Sparkles } from 'lucide-react';
+import { menuItems } from '../data/menuItems';
 
 function Menu() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [expandedItem, setExpandedItem] = useState(null);
+  const navigate = useNavigate();
 
-  const categories = [
-    { id: 'all', name: 'All Cakes', icon: Star, color: 'bg-y2k-pink' },
-    { id: 'signature', name: 'Signature', icon: Heart, color: 'bg-y2k-lavender' },
-    { id: 'custom', name: 'Custom', icon: Sparkles, color: 'bg-y2k-yellow' },
-    { id: 'seasonal', name: 'Seasonal', icon: Cherry, color: 'bg-y2k-mint' },
-  ];
+  const categories = {
+    signature: "Signature Cakes",
+    specialty: "Specialty Cakes"
+  };
+
+  const handleItemClick = (itemId) => {
+    setExpandedItem(expandedItem === itemId ? null : itemId);
+  };
+
+  const startBuildingCake = (flavor) => {
+    navigate('/cake-builder', { state: { initialFlavor: flavor } });
+  };
+
+  // Helper function to format frosting types
+  const formatFrostingTypes = (frostings) => {
+    return frostings.map(type => {
+      // Convert camelCase to Title Case
+      return type
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, str => str.toUpperCase());
+    }).join(', ');
+  };
 
   return (
-    <div className="min-h-screen pt-20 bg-glitter-gradient">
-      {/* Floating Decorative Elements */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-20 left-10 animate-float delay-100">
-          <Star className="w-12 h-12 text-y2k-yellow" />
-        </div>
-        <div className="absolute top-40 right-20 animate-float delay-200">
-          <Heart className="w-16 h-16 text-y2k-pink" />
-        </div>
-        <div className="absolute bottom-20 left-1/4 animate-float delay-300">
-          <Sparkles className="w-10 h-10 text-y2k-lavender" />
-        </div>
-      </div>
+    <div className="min-h-screen pt-16 md:pt-20 bg-glitter-gradient">
+      <div className="max-w-4xl mx-auto px-3 md:px-4 py-8 md:py-12">
+        <h1 className="font-seasons text-3xl md:text-4xl text-y2k-pink text-center mb-8 md:mb-12">
+          ✨ Our Magical Menu ✨
+        </h1>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="font-bubblegum text-6xl text-white mb-4 drop-shadow-[0_2px_2px_rgba(255,107,158,0.5)]">
-            ✨ Sweet Menu ✨
-          </h1>
-          <p className="font-kawaii text-xl text-white/90">
-            Discover our magical collection of kawaii cakes! 🎂
-          </p>
-        </div>
+        {Object.entries(categories).map(([category, title]) => (
+          <div key={category} className="mb-8 md:mb-12">
+            <h2 className="font-seasons text-xl md:text-2xl text-y2k-lavender mb-4 md:mb-6">
+              {title}
+            </h2>
 
-        {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`${
-                activeCategory === category.id
-                  ? 'scale-110 shadow-kawaii'
-                  : 'hover:scale-105'
-              } ${category.color} px-6 py-3 rounded-full text-white font-kawaii
-              flex items-center space-x-2 border-2 border-white transition-all duration-300`}
-            >
-              <category.icon className="w-5 h-5" />
-              <span>{category.name}</span>
-            </button>
-          ))}
-        </div>
+            <div className="space-y-3 md:space-y-4">
+              {menuItems
+                .filter(item => item.category === category)
+                .map(item => (
+                  <div 
+                    key={item.id}
+                    className="bg-white/90 backdrop-blur-sm rounded-xl md:rounded-2xl border-2 
+                      border-y2k-pink overflow-hidden transition-all duration-300"
+                  >
+                    <button
+                      onClick={() => handleItemClick(item.id)}
+                      className="w-full px-4 md:px-6 py-3 md:py-4"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                        <div className="flex items-center gap-3">
+                          <div 
+                            className="w-5 h-5 md:w-6 md:h-6 rounded-full border-2 border-pink-200 flex-shrink-0"
+                            style={{ backgroundColor: item.color }}
+                          />
+                          <div className="font-seasons text-lg md:text-xl text-y2k-pink">
+                            {item.name}
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center justify-between sm:justify-start gap-4 flex-1">
+                          <div className="text-sm md:text-base text-gray-600">
+                            Starting at ${item.basePrice}
+                          </div>
+                          {expandedItem === item.id ? 
+                            <ChevronUp className="w-5 h-5 text-y2k-pink" /> : 
+                            <ChevronDown className="w-5 h-5 text-y2k-pink" />
+                          }
+                        </div>
+                      </div>
+                    </button>
 
-        {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Menu Items */}
-          {menuItems.map((item) => (
-            <div key={item.id} className="group relative">
-              {/* Glitter Background */}
-              <div className="absolute inset-0 bg-white/50 rounded-3xl rotate-2 
-                group-hover:rotate-3 transition-transform duration-300" />
-              
-              {/* Card Content */}
-              <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-6 
-                border-2 border-y2k-pink shadow-kawaii 
-                group-hover:-translate-y-1 transition-transform duration-300">
-                <div className="relative aspect-square rounded-2xl overflow-hidden mb-4">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-full h-full object-cover transform group-hover:scale-110 
-                      transition-transform duration-500"
-                  />
-                  {/* Price Tag */}
-                  <div className="absolute top-4 right-4 bg-y2k-pink text-white px-4 py-2 
-                    rounded-full font-bubblegum border-2 border-white shadow-kawaii">
-                    ${item.price}
+                    {expandedItem === item.id && (
+                      <div className="px-4 md:px-6 pb-4 animate-slideDown">
+                        <p className="text-sm md:text-base text-gray-600 mb-3 md:mb-4">
+                          {item.description}
+                        </p>
+                        
+                        <div className="mb-3 md:mb-4 text-sm">
+                          <div className="text-y2k-pink font-medium mb-1 md:mb-0 md:inline">
+                            Available Frostings:
+                          </div>
+                          <div className="md:ml-2 text-gray-600">
+                            {formatFrostingTypes(item.availableFrostings)}
+                          </div>
+                        </div>
+
+                        <p className="text-xs md:text-sm text-gray-500 italic mb-4">
+                          <Sparkles className="inline-block w-3 h-3 md:w-4 md:h-4 mr-1" />
+                          Customize with your choice of fillings and decorations
+                        </p>
+
+                        <button
+                          onClick={() => startBuildingCake(item.id)}
+                          className="w-full sm:w-auto y2k-button flex items-center justify-center gap-2
+                            group hover:scale-105 transition-transform px-6 py-2.5"
+                        >
+                          <span>Start Building</span>
+                          <Cake className="w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
+                        </button>
+                      </div>
+                    )}
                   </div>
-                </div>
-
-                <h3 className="font-bubblegum text-2xl text-y2k-pink mb-2">
-                  {item.name} ✨
-                </h3>
-                <p className="font-kawaii text-gray-600 mb-4">
-                  {item.description}
-                </p>
-
-                <button className="w-full y2k-button flex items-center justify-center space-x-2">
-                  <span>Order Now</span>
-                  <Heart className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Decorative Star */}
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-y2k-yellow 
-                rounded-full border-2 border-white shadow-kawaii flex items-center 
-                justify-center group-hover:rotate-12 transition-transform">
-                <Star className="w-4 h-4 text-white" />
-              </div>
+                ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-const menuItems = [
-  {
-    id: 1,
-    name: "Unicorn Dream Cake",
-    description: "Magical vanilla cake with rainbow buttercream and edible glitter ✨",
-    price: 45,
-    image: "/images/unicorn-cake.jpg",
-    category: "signature"
-  },
-  // Add more menu items...
-];
+const globalStyles = `
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+.y2k-button {
+  @apply bg-pink-500 text-white rounded-full 
+    shadow-md hover:shadow-lg transition-all duration-300
+    focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2;
+}
+`;
 
 export default Menu; 

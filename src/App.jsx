@@ -12,6 +12,7 @@ const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Gallery = lazy(() => import('./pages/Gallery'));
+const ItemDetail = lazy(() => import('./pages/ItemDetail'));
 
 // Animated page wrapper
 function PageWrapper({ children }) {
@@ -41,6 +42,11 @@ function AnimatedRoutes() {
         <Route path="/menu" element={
           <PageWrapper>
             <Menu />
+          </PageWrapper>
+        } />
+        <Route path="/menu/:id" element={
+          <PageWrapper>
+            <ItemDetail />
           </PageWrapper>
         } />
         <Route path="/cake-builder" element={
