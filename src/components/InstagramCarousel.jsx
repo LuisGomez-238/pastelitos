@@ -1,110 +1,113 @@
-import React, { useState, useEffect } from 'react';
-import { Instagram, ChevronLeft, ChevronRight } from 'lucide-react';
-import axios from 'axios';
-import { INSTAGRAM_CONFIG } from '../config/instagram';
+import { useEffect, useRef } from 'react';
+import { Instagram } from 'lucide-react';
 
 function InstagramCarousel() {
-  const [posts, setPosts] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-
+  const containerRef = useRef(null);
+  
   useEffect(() => {
-    const fetchInstagramFeed = async () => {
-      try {
-        const response = await axios.get(
-          `https://graph.instagram.com/v12.0/${INSTAGRAM_CONFIG.userId}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${INSTAGRAM_CONFIG.accessToken}&limit=9`
-        );
-        setPosts(response.data.data);
-      } catch (err) {
-        console.error('Instagram feed error:', err);
-      } finally {
-        setLoading(false);
+    // Clean up any existing script
+    const existingScript = document.getElementById('instagram-embed-script');
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    // Create and load Instagram embed script
+    const script = document.createElement('script');
+    script.id = 'instagram-embed-script';
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    script.defer = true;
+    
+    // Process embeds once script is loaded
+    script.onload = () => {
+      if (window.instgrm) {
+        window.instgrm.Embeds.process();
       }
     };
-
-    fetchInstagramFeed();
+    
+    document.body.appendChild(script);
+    
+    // Cleanup on unmount
+    return () => {
+      if (document.getElementById('instagram-embed-script')) {
+        document.getElementById('instagram-embed-script').remove();
+      }
+    };
   }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === posts.length - 3 ? 0 : prevIndex + 1
-      );
-    }, 3000); // Change slides every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [posts.length]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === posts.length - 3 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? posts.length - 3 : prevIndex - 1
-    );
-  };
-
-  if (loading || posts.length === 0) {
-    return (
-      <div className="h-64 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-pink-500"></div>
-      </div>
-    );
-  }
-
+  
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <div className="overflow-hidden rounded-2xl">
-        <div 
-          className="flex transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}
-        >
-          {posts.map((post) => (
-            <div 
-              key={post.id}
-              className="w-1/3 flex-shrink-0 p-1"
-            >
-              <a
-                href={post.permalink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative aspect-square rounded-xl overflow-hidden block"
-              >
-                <img
-                  src={post.media_url}
-                  alt={post.caption}
-                  className="w-full h-full object-cover transform group-hover:scale-110 
-                    transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-y2k-pink/50 opacity-0 
-                  group-hover:opacity-100 transition-opacity flex items-center 
-                  justify-center">
-                  <Instagram className="w-8 h-8 text-white" />
-                </div>
-              </a>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Instagram feed from pastelitos_559 */}
+          <blockquote 
+            className="instagram-media" 
+            data-instgrm-permalink="https://www.instagram.com/p/DGd52w7yr0R/?utm_source=ig_embed&ig_rid=be4c7f55-82e7-42ed-98ac-b7acde910251"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote 
+            className="instagram-media" 
+            data-instgrm-permalink="https://www.instagram.com/p/DFcBTK2xKIg/?img_index=1"
+
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote 
+            className="instagram-media" 
+            data-instgrm-permalink="https://www.instagram.com/p/DFo7oHHxjEm/"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
         </div>
       </div>
-
-      {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 
-          hover:bg-white rounded-full p-2 shadow-lg transition-all"
-      >
-        <ChevronLeft className="w-6 h-6 text-y2k-pink" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 
-          hover:bg-white rounded-full p-2 shadow-lg transition-all"
-      >
-        <ChevronRight className="w-6 h-6 text-y2k-pink" />
-      </button>
+      
+      <div className="text-center mt-4">
+        <a 
+          href="https://www.instagram.com/pastelitos_559/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 y2k-button bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 font-seasons"
+        >
+          <Instagram className="w-5 h-5" />
+          See More on Instagram
+        </a>
+      </div>
     </div>
   );
 }

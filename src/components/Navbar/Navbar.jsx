@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Star, Sparkles, Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,16 +11,15 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            
-              <img 
-            src="/pastelitosLogo.svg" 
-            alt="Pastelitos Logo" 
-            className="w-20 h-20 mx-auto mb-6 mt-6"
-          />
-            <span className="font-seasons text-2xl text-y2k-pink">
-              Welcome to our shop!
-            </span>
+          <Link to="/" className="flex items-center">
+            <motion.img 
+              src="/PastelitosLogo.png" 
+              alt="Pastelitos Logo" 
+              className="w-20 h-20"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -33,7 +33,7 @@ function Navbar() {
               <Link
                 key={item.path}
                 to={item.path}
-                className="group flex items-center space-x-2 font-seasons text-y2k-pink 
+                className="group flex items-center space-x-1 font-seasons text-y2k-pink 
                   hover:text-y2k-babypink transition-colors"
               >
                 <item.icon className="w-5 h-5 group-hover:animate-bounce-slow" />

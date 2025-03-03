@@ -68,14 +68,18 @@ function Footer() {
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Copyright */}
-        <div className="mt-12 pt-8 border-t border-white/20 text-center">
-          <p className="font-kawaii text-white/90">
-            © 2024 Pastelitos. Made with <Heart className="w-4 h-4 inline-block text-y2k-pink" /> 
-            and lots of sparkles ✨
-          </p>
+          {/* Copyright Section */}
+          <div className="text-center mt-12 col-span-1 md:col-span-3">
+            <div className="border-t border-white/20 pt-6">
+              <p className="font-kawaii text-white/80 text-sm">
+                © {new Date().getFullYear()} Pastelitos. All rights reserved.
+              </p>
+              <p className="font-kawaii text-white/70 text-xs mt-1">
+                Designed & Developed by <a href="#" className="text-y2k-yellow hover:text-white transition-colors">AWEVO Software Solutions LLC</a>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

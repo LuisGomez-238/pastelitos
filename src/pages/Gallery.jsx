@@ -1,59 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Instagram } from 'lucide-react';
-import axios from 'axios';
-import { INSTAGRAM_CONFIG } from '../config/instagram';
 
 function Gallery() {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const containerRef = useRef(null);
+  
   useEffect(() => {
-    const fetchInstagramFeed = async () => {
-      try {
-        const response = await axios.get(
-          `https://graph.instagram.com/v12.0/${INSTAGRAM_CONFIG.userId}/media?fields=id,caption,media_type,media_url,permalink,thumbnail_url,timestamp&access_token=${INSTAGRAM_CONFIG.accessToken}&limit=12`
-        );
-        setPosts(response.data.data);
-      } catch (err) {
-        setError('Failed to load Instagram feed');
-        console.error('Instagram feed error:', err);
-      } finally {
-        setLoading(false);
+    // Clean up any existing script
+    const existingScript = document.getElementById('instagram-embed-script');
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    // Create and load Instagram embed script
+    const script = document.createElement('script');
+    script.id = 'instagram-embed-script';
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    script.defer = true;
+    
+    // Process embeds once script is loaded
+    script.onload = () => {
+      if (window.instgrm) {
+        window.instgrm.Embeds.process();
       }
     };
-
-    fetchInstagramFeed();
+    
+    document.body.appendChild(script);
+    
+    // Cleanup on unmount
+    return () => {
+      if (document.getElementById('instagram-embed-script')) {
+        document.getElementById('instagram-embed-script').remove();
+      }
+    };
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-pink-500"></div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-500 mb-4">{error}</p>
-          <a 
-            href="https://www.instagram.com/pastelitos_559/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="y2k-button"
-          >
-            Visit Our Instagram
-          </a>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 py-20">
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-purple-50 py-20" ref={containerRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="font-seasons text-5xl text-y2k-pink mb-4">
@@ -73,25 +56,136 @@ function Gallery() {
           </a>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {posts.map((post) => (
-            <a
-              key={post.id}
-              href={post.permalink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative aspect-square rounded-2xl overflow-hidden"
-            >
-              <img
-                src={post.media_url}
-                alt={post.caption}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-y2k-pink/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <Instagram className="w-8 h-8 text-white" />
-              </div>
-            </a>
-          ))}
+        {/* Instagram Profile Embed */}
+        <div className="mb-12 flex justify-center">
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/pastelitos_559/"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+        </div>
+
+        {/* Individual Post Embeds - Using pastelitos_559 account */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DGd52w7yr0R/?utm_source=ig_embed&ig_rid=be4c7f55-82e7-42ed-98ac-b7acde910251"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DGJFf_evtLu/"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DFo7oHHxjEm/"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DCuZcmNSJf8/"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DFcBTK2xKIg/?img_index=1"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
+          
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DDvZfZ4yElr/"
+            data-instgrm-version="14"
+            style={{
+              background: '#FFF',
+              border: '0',
+              borderRadius: '3px',
+              boxShadow: '0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15)',
+              margin: '1px',
+              maxWidth: '540px',
+              minWidth: '326px',
+              padding: '0',
+              width: '99.375%'
+            }}
+          >
+          </blockquote>
         </div>
       </div>
     </div>

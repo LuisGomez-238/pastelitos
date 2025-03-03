@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Star, Sparkles, Cherry, Instagram } from 'lucide-react';
 import InstagramCarousel from '../components/InstagramCarousel';
+import Footer from '../components/Footer/Footer';
 
 function Home() {
   return (
@@ -22,7 +23,7 @@ function Home() {
       <div className="container mx-auto px-4 py-20">
         <div className="text-center">
           <img 
-            src="/pastelitosLogo.svg" 
+            src="/PastelitosLogo.png" 
             alt="Pastelitos Logo" 
             className="w-80 h-80 mx-auto mb-6"
           />
@@ -86,7 +87,7 @@ function Home() {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-20 bg-glitter-gradient relative">        
+      {/* <section className="py-20 bg-glitter-gradient relative">        
     <div className="absolute inset-0 bg-[url('/images/sparkle-pattern.png')] opacity-5" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -134,7 +135,7 @@ function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Why Choose Us Section */}
       <section className="py-20 bg-white relative overflow-hidden">
@@ -214,6 +215,7 @@ function Home() {
           </Link>
         </div>
       </section>
+      <Footer />
     </div>
   );
 }
